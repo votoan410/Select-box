@@ -14,7 +14,7 @@ const SelectFn = () => {
     console.log("state updated? ", state);
 
     let temp = state
-      .filter((entry) => entry.checked)
+      .filter((entry) => entry.checked && entry.value !== "Select All")
       .map((entry) => entry.value)
       .join(" , ");
     setSelectedOutput(temp);
@@ -75,7 +75,6 @@ const SelectFn = () => {
 
   return (
     <>
-      {" "}
       <section> Selected value: {selectedOutput}</section>
       <br></br>
       <form>
@@ -105,50 +104,3 @@ const SelectFn = () => {
 };
 
 export default SelectFn;
-
-{
-  /* <form>
-        <label>
-          <input
-            type="checkbox"
-            value="Kosher"
-            onChange={(event) => {
-           
-            }}
-          />
-          Select all
-        </label>
-        <br></br>
-        <label>
-          <input
-            type="checkbox"
-            value="Kosher"
-            onChange={(event) => {
-             
-            }}
-          />
-          Kosher
-        </label>
-        <br></br>
-        <label>
-          <input
-            type="checkbox"
-            value="Kosher"
-            onChange={(event) => {
-           
-            }}
-          />
-          No Celery
-        </label>
-        <br></br>
-        <label>
-          <input
-            type="checkbox"
-            value="Kosher"
-            onChange={(event) => {
-            }}
-          />
-          No egg
-        </label>
-      </form> */
-}
