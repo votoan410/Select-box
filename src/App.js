@@ -7,9 +7,11 @@ import SelectClass from "./components/SelectClass";
 function App() {
   return (
     <>
-      {" "}
-      {/* <SelectFn /> */}
-      <SelectClass />
+      <div className="App">
+        {" "}
+        {/* <SelectFn /> */}
+        <SelectClass />
+      </div>
     </>
   );
 }

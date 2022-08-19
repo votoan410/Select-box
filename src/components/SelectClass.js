@@ -73,20 +73,19 @@ export default class SelectClass extends Component {
   render() {
     return (
       <>
-        <section>
-          {" "}
-          Selected value:{" "}
+        <section className="header">
+          Selected value:
           {this.state.boxValue
             .filter((entry) => entry.checked && entry.value !== "Select All")
             .map((entry) => entry.value)
-            .join(" , ")}{" "}
+            .join(" , ")}
         </section>
         <br></br>
-        <form>
+        <form className="form">
           {this.state?.boxValue.map((entry) => {
             return (
               <>
-                <label>
+                <label className="form__entry">
                   <input
                     type="checkbox"
                     value={entry.value}
@@ -101,7 +100,11 @@ export default class SelectClass extends Component {
           })}
         </form>
         <br></br>
-        <button value="clear" onClick={(e) => this.handleClear(e)}>
+        <button
+          className="button"
+          value="clear"
+          onClick={(e) => this.handleClear(e)}
+        >
           Clear All
         </button>
       </>
