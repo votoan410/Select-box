@@ -11,6 +11,8 @@ const SelectFn = () => {
   const [selectedOutput, setSelectedOutput] = useState("");
 
   useEffect(() => {
+    console.log("state updated? ", state);
+
     let temp = state
       .filter((entry) => entry.checked)
       .map((entry) => entry.value)
@@ -23,22 +25,33 @@ const SelectFn = () => {
     if (event.target.value == "Select All") {
       // checked if there is any box checked
       let newArr = state.slice(1);
-      console.log("modified arr ", newArr);
-      const allChecked = newArr.every((entry) => entry.checked);
-      console.log("if other checked ", allChecked);
-      const selectedState = [];
+      const otherChecked = newArr.every((entry) => entry.checked);
+      const allChecked = state.every((entry) => entry.checked);
+      let selectAllState = [];
 
-      if (allChecked) {
-        const selectedState = state.map((obj) => {
-            if( obj.value == )
+      // if all other boxes are checked, set them to false
+      if (otherChecked && event.target.checked == true) {
+        selectAllState = state.map((obj) => {
+          if (obj.value == event.target.value) {
+            return { ...obj, checked: true };
+          }
           return { ...obj, checked: false };
         });
-        setState(selectedState);
       }
-      selectedState = state.map((obj) => {
-        return { ...obj, checked: true };
-      }); 
-      setState(selectedState);
+      // clear if all box  checked
+      else if (allChecked) {
+        selectAllState = state.map((obj) => {
+          return { ...obj, checked: false };
+        });
+      }
+      // otherwise set everything to checked
+      else {
+        selectAllState = state.map((obj) => {
+          return { ...obj, checked: true };
+        });
+      }
+
+      setState(selectAllState);
     } else {
       const newState = state.map((obj) => {
         if (obj.value == event.target.value) {
